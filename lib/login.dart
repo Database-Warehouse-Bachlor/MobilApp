@@ -23,8 +23,9 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/Cordel.png',
-                  scale: 4),
+              Image.asset('assets/logo/4_3_logo_tekst.png',
+                height: 130,
+                width: 230),
               SizedBox(height: 20),
               Text('Cordel Norge AS', style: TextStyle(
                   fontSize: 30.0,
@@ -35,7 +36,7 @@ class _LoginState extends State<Login> {
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Organization number',
+                  labelText: 'Brukernavn',
                   labelStyle: TextStyle(
                       fontSize: 20.0,
                       color: Colors.deepOrange
@@ -46,7 +47,7 @@ class _LoginState extends State<Login> {
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Password',
+                  labelText: 'Passord',
                   labelStyle: TextStyle(
                       fontSize: 20.0,
                       color: Colors.deepOrange
