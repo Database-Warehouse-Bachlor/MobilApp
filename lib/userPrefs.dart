@@ -1,12 +1,7 @@
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserPrefs {
 
-  String token;
 
-
-  String getToken() {
-    return
-  }
 
 }

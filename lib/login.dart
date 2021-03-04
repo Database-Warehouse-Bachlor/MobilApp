@@ -1,7 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobilapp/main.dart';
+
+import "package:mobilapp/services/apiClient.dart";
+import 'package:mobilapp/userPrefs.dart';
+import 'package:mobilapp/authorize.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -59,7 +63,21 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(25.0),
                 child: SizedBox(width: 200.0,
-                  child: RaisedButton(onPressed: () {
+                  child: RaisedButton(onPressed: () async {
+                    Future<String> token = Authorize().authorize("1234", "admin");
+
+                    print("hei");
+                    UserPrefs().tokenStorage.write(key: "token", value: "5556");
+
+                    String re = await UserPrefs().tokenStorage.read(key: "token");
+
+
+
+                    print(re.toString());
+
+                    String response = await ApiClient().getClient("JWTAuthentication?orgNum=1234&pass=admin");
+
+                    Navigator.pushReplacementNamed(context, "/home");
                   },
                     padding: new EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(
