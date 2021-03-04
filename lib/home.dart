@@ -3,10 +3,16 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
+}
+
+void  tester() async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  print(preferences.getString("token"));
 }
 
 class _HomeState extends State<Home> {
@@ -134,6 +140,7 @@ class _HomeState extends State<Home> {
                         ),
                         child: FlatButton(
                           onPressed: () {
+                            tester();
                             Navigator.pushReplacementNamed(context, "/login");
                           },
                           child: Text(

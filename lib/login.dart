@@ -6,6 +6,8 @@ import 'package:mobilapp/main.dart';
 import "package:mobilapp/services/apiClient.dart";
 import 'package:mobilapp/userPrefs.dart';
 import 'package:mobilapp/authorize.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -64,20 +66,20 @@ class _LoginState extends State<Login> {
                 margin: EdgeInsets.all(25.0),
                 child: SizedBox(width: 200.0,
                   child: RaisedButton(onPressed: () async {
+
+                    Toast.show("test", context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+
+                    SharedPreferences preferences = await SharedPreferences.getInstance();
+                    preferences.setString("token", "tester123");
+
+                    String tokenTest = preferences.getString("token");
+
+                    print(tokenTest);
+
                     Future<String> token = Authorize().authorize("1234", "admin");
 
-                    print("hei");
-                    UserPrefs().tokenStorage.write(key: "token", value: "5556");
 
-                    String re = await UserPrefs().tokenStorage.read(key: "token");
-
-
-
-                    print(re.toString());
-
-                    String response = await ApiClient().getClient("JWTAuthentication?orgNum=1234&pass=admin");
-
-                    Navigator.pushReplacementNamed(context, "/home");
+                    //Navigator.pushReplacementNamed(context, "/home");
                   },
                     padding: new EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(

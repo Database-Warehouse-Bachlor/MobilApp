@@ -10,23 +10,41 @@ class ApiClient {
   Future<String> getClient(String customUrl, Map bodyInfo, String token) async {
     String mainUrl = baseURL + customUrl;
 
-    //Creates a post request
-    http.Response response = await http.post(baseURL,
-        headers: {
-      "Content-Type": "application/json",
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    },
-        body: bodyInfo
-    );
+    var jSONbody = jsonEncode(bodyInfo);
 
-    if(response.statusCode == 200) {
-      print(response.body.toString());
-      return response.body.toString();
-    } else {
-      print("Noe gikk galt i post metoden");
+    print("sender response");
+
+    try {
+      //Creates a post request with a timeout after 10 seconds
+      http.Response response = await http.post(customUrl,
+          headers: {
+            "Content-Type": "application/json",
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+          body: jSONbody
+      ).timeout(Duration(seconds: 10));
+
+      //If everything is OK
+      if (response.statusCode == 200) {
+        String responseDecoded = jsonDecode(response.body);
+        return responseDecoded;
+
+        //If user is not authorized
+      } else if (response.statusCode == 401) {
+        return "Unauthorized";
+      }
+
+      //If there is other internal issues
+      return null;
+
+      //If the app cannot connect to the api
+    } on TimeoutException catch (e) {
+      print(e);
+      return "connection";
+    }
+    catch (e) {
       return null;
     }
-
   }
 }
