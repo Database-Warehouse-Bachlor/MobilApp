@@ -1,12 +1,5 @@
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefs {
-
-  String token;
-
-
-  String getToken() {
-    return
-  }
 
 }

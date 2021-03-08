@@ -1,7 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobilapp/main.dart';
+
+import "package:mobilapp/services/apiClient.dart";
+import 'package:mobilapp/userPrefs.dart';
+import 'package:mobilapp/authorize.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -59,7 +65,15 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(25.0),
                 child: SizedBox(width: 200.0,
-                  child: RaisedButton(onPressed: () {
+                  child: RaisedButton(onPressed: () async {
+
+                    bool loginSuccessful = await Authorize().authorize("1234", "admin", context);
+
+                    //If everything is ok, sends to home page
+                    if(loginSuccessful) {
+                      Navigator.pushReplacementNamed(context, "/home");
+                    }
+
                   },
                     padding: new EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(
