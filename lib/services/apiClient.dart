@@ -15,6 +15,9 @@ class ApiClient {
     print("sender response");
 
     try {
+
+      //http.Response response = await http.post("http://10.0.2.2:5000/api/JWTAuthentication?orgNum=1234&pass=admin");
+
       //Creates a post request with a timeout after 10 seconds
       http.Response response = await http.post(customUrl,
           headers: {
@@ -25,9 +28,12 @@ class ApiClient {
           body: jSONbody
       ).timeout(Duration(seconds: 10));
 
+      print("gay");
+      print(response.statusCode);
+
       //If everything is OK
       if (response.statusCode == 200) {
-        String responseDecoded = jsonDecode(response.body);
+        String responseDecoded = jsonDecode(response.body).toString();
         return responseDecoded;
 
         //If user is not authorized
@@ -44,6 +50,7 @@ class ApiClient {
       return "connection";
     }
     catch (e) {
+      print(e);
       return null;
     }
   }

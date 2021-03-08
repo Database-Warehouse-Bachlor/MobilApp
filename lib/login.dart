@@ -67,19 +67,13 @@ class _LoginState extends State<Login> {
                 child: SizedBox(width: 200.0,
                   child: RaisedButton(onPressed: () async {
 
-                    Toast.show("test", context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                    bool loginSuccessful = await Authorize().authorize("1234", "admin", context);
 
-                    SharedPreferences preferences = await SharedPreferences.getInstance();
-                    preferences.setString("token", "tester123");
+                    //If everything is ok, sends to home page
+                    if(loginSuccessful) {
+                      Navigator.pushReplacementNamed(context, "/home");
+                    }
 
-                    String tokenTest = preferences.getString("token");
-
-                    print(tokenTest);
-
-                    Future<String> token = Authorize().authorize("1234", "admin");
-
-
-                    //Navigator.pushReplacementNamed(context, "/home");
                   },
                     padding: new EdgeInsets.all(10),
                     shape: RoundedRectangleBorder(
