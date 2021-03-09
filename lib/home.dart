@@ -23,7 +23,6 @@ class _HomeState extends State<Home> {
 
   String missingDataInfo = "Alle data er registrert som forventet!";
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -36,7 +35,6 @@ class _HomeState extends State<Home> {
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.grey[400],
           ),
           child: new Center(
             child: new Column(
@@ -46,17 +44,32 @@ class _HomeState extends State<Home> {
                     SizedBox(height: 130, width: 10),
                     Expanded(
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.circular(5)
+                        ),
                         height: 100,
                         padding: EdgeInsets.fromLTRB(5, 5, 3, 5),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          color: Colors.white,
+
+                          color: Colors.grey[200],
                           onPressed: () {
+                            Navigator.pushNamed(context, "/home/tennantView");
                           },
                           child: Text(
-                            "hei",
+                            "Registrerte tennants",
+                            style: TextStyle(
+                              fontSize: 25,
+
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -64,13 +77,21 @@ class _HomeState extends State<Home> {
                     SizedBox(height: 130, width: 10),
                     Expanded(
                       child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5)
+                        ),
                         height: 100,
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          color: Colors.white,
+                          color: Colors.grey[200],
                           onPressed: () {
                           },
                           child: Text(
@@ -91,13 +112,21 @@ class _HomeState extends State<Home> {
                     SizedBox(height: 130, width: 10),
                     Expanded(
                       child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5)
+                        ),
                         height: 110,
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          color: Colors.white,
+                          color: Colors.grey[200],
                           onPressed: () {
                           },
                           child: Column(
@@ -135,8 +164,12 @@ class _HomeState extends State<Home> {
                       child: Container(
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
+                            color: Colors.grey[200],
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5)
                         ),
                         child: FlatButton(
                           onPressed: () {

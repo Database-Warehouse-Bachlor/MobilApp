@@ -10,25 +10,22 @@ class ApiClient {
   Future<String> getClient(String customUrl, Map bodyInfo, String token) async {
     String mainUrl = baseURL + customUrl;
 
-    var jSONbody = jsonEncode(bodyInfo);
-
     print("sender response");
 
     try {
 
-      //http.Response response = await http.post("http://10.0.2.2:5000/api/JWTAuthentication?orgNum=1234&pass=admin");
-
       //Creates a post request with a timeout after 10 seconds
       http.Response response = await http.post(customUrl,
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
             'Accept': 'application/json',
             'Authorization': 'Bearer $token',
           },
-          body: jSONbody
+        body: bodyInfo,
+        encoding: Encoding.getByName("utf-8")
+
       ).timeout(Duration(seconds: 10));
 
-      print("gay");
       print(response.statusCode);
 
       //If everything is OK
@@ -38,6 +35,7 @@ class ApiClient {
 
         //If user is not authorized
       } else if (response.statusCode == 401) {
+        print(response.statusCode);
         return "Unauthorized";
       }
 

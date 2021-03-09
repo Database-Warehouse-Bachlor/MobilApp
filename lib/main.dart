@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: "/login",
+    initialRoute: "/home",
     routes: {
       "/login": (context) => Login(),
       "/home": (context) => Home(),

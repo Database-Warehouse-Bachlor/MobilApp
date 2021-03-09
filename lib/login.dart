@@ -16,6 +16,17 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 
+  final emailField = TextEditingController();
+  final passwordField = TextEditingController();
+
+  @override
+  void dispose() {
+    emailField.dispose();
+    passwordField.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,14 +46,15 @@ class _LoginState extends State<Login> {
               SizedBox(height: 20),
               Text('Cordel Norge AS', style: TextStyle(
                   fontSize: 30.0,
-                  color: Colors.grey[700]
+                  color: Colors.grey[800]
               ),
               ),
               SizedBox(height: 40.0),
               TextField(
+                controller: emailField,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Brukernavn',
+                  labelText: 'Email',
                   labelStyle: TextStyle(
                       fontSize: 20.0,
                       color: Colors.deepOrange
@@ -51,6 +63,7 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 50.0),
               TextField(
+                controller: passwordField,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Passord',
@@ -67,7 +80,13 @@ class _LoginState extends State<Login> {
                 child: SizedBox(width: 200.0,
                   child: RaisedButton(onPressed: () async {
 
-                    bool loginSuccessful = await Authorize().authorize("1234", "admin", context);
+                    String email = emailField.text.toString();
+                    String password = passwordField.text.toString();
+
+                    print(email);
+                    print(password);
+
+                    bool loginSuccessful = await Authorize().authorize(email, password, context);
 
                     //If everything is ok, sends to home page
                     if(loginSuccessful) {
