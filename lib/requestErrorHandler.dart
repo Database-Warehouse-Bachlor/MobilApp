@@ -27,7 +27,7 @@ class RequestErrorHandler {
       }
       //runs if there is an error
     } else {
-      Toast.show("En feil skjedde", context, duration: Toast.LENGTH_LONG,
+      Toast.show("En feil skjeddeawd", context, duration: Toast.LENGTH_LONG,
           gravity: Toast.BOTTOM);
       return null;
     }

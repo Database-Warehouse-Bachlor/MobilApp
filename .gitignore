@@ -70,3 +70,5 @@ ios/Flutter/Release.xcconfig
 *.xcsettings
 
 pubspec.lock
+
+local.properties
