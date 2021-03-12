@@ -10,11 +10,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-void  tester() async {
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  print(preferences.getString("token"));
-}
-
 class _HomeState extends State<Home> {
 
   List data;
@@ -25,6 +20,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
+
 
     return new Scaffold(
       appBar: new AppBar(
@@ -133,7 +130,7 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Manglende data",
+                                "¨Det er så og så mange nye feil i loggen de siste 24 timene",
                                 style: TextStyle(
                                   fontSize: 23,
                                 ),
@@ -172,8 +169,12 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(5)
                         ),
                         child: FlatButton(
-                          onPressed: () {
-                            tester();
+                          onPressed: () async {
+                            //Clears the token
+                            SharedPreferences preferences = await SharedPreferences.getInstance();
+                            preferences.setString("token", "");
+
+                            //Goes back to the login screen
                             Navigator.pushReplacementNamed(context, "/login");
                           },
                           child: Text(

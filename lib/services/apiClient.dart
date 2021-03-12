@@ -2,14 +2,19 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:mobilapp/tennant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient {
 
+
   String baseURL = "http://10.0.2.2:5000/api/JWTAuthentication?orgNum=1234&pass=admin";
 
-  Future<String> getClient(String customUrl, Map bodyInfo, String token) async {
-    String mainUrl = baseURL + customUrl;
+  Future<http.Response> getClient(String customUrl, Map bodyInfo, String token) async {
 
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    String mainUrl = baseURL + customUrl;
     print("sender response");
 
     try {
@@ -27,17 +32,19 @@ class ApiClient {
       ).timeout(Duration(seconds: 10));
 
       print(response.statusCode);
+      print("Test");
 
       //If everything is OK
       if (response.statusCode == 200) {
-        String responseDecoded = jsonDecode(response.body).toString();
-        return responseDecoded;
+        print("Success");
+        return response;
 
         //If user is not authorized
       } else if (response.statusCode == 401) {
         print(response.statusCode);
-        return "Unauthorized";
+        preferences.setString("error", "Unauthorized");
       }
+
 
       //If there is other internal issues
       return null;
@@ -45,10 +52,12 @@ class ApiClient {
       //If the app cannot connect to the api
     } on TimeoutException catch (e) {
       print(e);
-      return "connection";
+      preferences.setString("error", "Connection");
+      return null;
     }
     catch (e) {
       print(e);
+      preferences.setString("error", "Error");
       return null;
     }
   }

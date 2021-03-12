@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
 
                     //If everything is ok, sends to home page
                     if(loginSuccessful) {
-                      Navigator.pushReplacementNamed(context, "/home");
+                      Navigator.pushReplacementNamed(context, "/loading");
                     }
 
                   },
