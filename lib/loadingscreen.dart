@@ -38,7 +38,7 @@ class _LoadingState extends State<Loading> {
     print(tennants[0].tennantName);
     print(errorLog[0].log);
 
-    //Navigator.pushReplacementNamed(context, "/home", arguments: tennants);
+    Navigator.pushReplacementNamed(context, "/home");
 
     }
 
