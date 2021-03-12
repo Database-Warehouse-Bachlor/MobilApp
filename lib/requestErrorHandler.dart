@@ -1,37 +1,34 @@
-
-
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 class RequestErrorHandler {
 
-  String errorHandler(String response, BuildContext context) {
-    if (response != null) {
+  Future<bool> errorHandler(String errorMessage, BuildContext context) async {
+
+    if (errorMessage != "Error") {
       //checks if there is an authentication error
-      if (response != "Unauthorized") {
+      if (errorMessage != "Unauthorized") {
         //checks if there is a connection error
-        if (response != "connection") {
-          return response;
+        if (errorMessage != "connection") {
+          return true;
 
           //runs if there is a connection error
-        } else if (response == "connection") {
+        } else if (errorMessage == "connection") {
           Toast.show("Feil med internett forbindelse", context,
               duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-          return null;
         }
         //runs if the user cannot be verified. Could be wrong login information, or the user does not have access to api call
-      } else {
+      } else if(errorMessage == "Unauthorized") {
         Toast.show("Kunne ikke verifisere bruker", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
-        return null;
       }
       //runs if there is an error
     } else {
-      Toast.show("En feil skjeddeawd", context, duration: Toast.LENGTH_LONG,
+      Toast.show("En feil skjedde", context, duration: Toast.LENGTH_LONG,
           gravity: Toast.BOTTOM);
-      return null;
     }
 
-    return null;
+    return false;
   }
 }
