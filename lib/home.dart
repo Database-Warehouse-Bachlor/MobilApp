@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
 
                           color: Colors.grey[200],
                           onPressed: () {
-                            Navigator.pushNamed(context, "/home/tennantView");
+                            Navigator.pushNamed(context, "/home/tennantListView");
                           },
                           child: Text(
                             "Registrerte tennants",
@@ -90,6 +90,7 @@ class _HomeState extends State<Home> {
                           ),
                           color: Colors.grey[200],
                           onPressed: () {
+                            Navigator.pushNamed(context, "/home/logListView");
                           },
                           child: Text(
                             "Log",
