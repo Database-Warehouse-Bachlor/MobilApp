@@ -63,13 +63,25 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             Navigator.pushNamed(context, "/home/tennantListView");
                           },
-                          child: Text(
-                            "Registrerte tennants: " + numberOgTennantsAndErrors.numberOfTennants.toString(),
-                            style: TextStyle(
-                              fontSize: 25,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                            children:[
+                              Text(
+                                "Antall brukere:",
+                                style: TextStyle(
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                numberOgTennantsAndErrors.numberOfTennants.toString(),
+                                style: TextStyle(
+                                  fontSize: 30,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
 
-                            ),
-                            textAlign: TextAlign.center,
+                            ]
+
                           ),
                         ),
                       ),
@@ -134,17 +146,17 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Det er så og så mange nye feil i loggen de siste 24 timene",
+                                "Registrerte feil det siste døgnet:",
                                 style: TextStyle(
-                                  fontSize: 23,
+                                  fontSize: 22,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 6),
                               Text(
-                                "Ingen feil registrert",
+                                numberOgTennantsAndErrors.numberOfErrors.toString(),
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 30,
                                   color: color,
                                 ),
                                 textAlign: TextAlign.center,
