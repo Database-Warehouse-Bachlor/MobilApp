@@ -14,12 +14,10 @@ class Tennant {
     this.businessId,
   });
 
-  String tennantId;
+  String id;
   String tennantName;
-  String address;
-  String zipcode;
-  String city;
   String businessId;
+  String apiKey;
 
   static fromJson(Map<String, dynamic> json) => Tennant(
     tennantId: json["tennant_id"],
