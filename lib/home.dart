@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:mobilapp/numberOfTennantAndErrors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -21,7 +22,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-
+    String tennantsAndErrors = ModalRoute.of(context).settings.arguments;
+    Map<String, dynamic> numberMap = jsonDecode(tennantsAndErrors);
+    var numberOgTennantsAndErrors = NumberOfTennantAndErrors.fromJson(numberMap);
 
     return new Scaffold(
       appBar: new AppBar(
@@ -61,7 +64,7 @@ class _HomeState extends State<Home> {
                             Navigator.pushNamed(context, "/home/tennantListView");
                           },
                           child: Text(
-                            "Registrerte tennants",
+                            "Registrerte tennants: " + numberOgTennantsAndErrors.numberOfTennants.toString(),
                             style: TextStyle(
                               fontSize: 25,
 
@@ -131,7 +134,7 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "¨Det er så og så mange nye feil i loggen de siste 24 timene",
+                                "Det er så og så mange nye feil i loggen de siste 24 timene",
                                 style: TextStyle(
                                   fontSize: 23,
                                 ),
@@ -139,7 +142,7 @@ class _HomeState extends State<Home> {
                               ),
                               SizedBox(height: 6),
                               Text(
-                                "wowowowow",
+                                "Ingen feil registrert",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: color,
