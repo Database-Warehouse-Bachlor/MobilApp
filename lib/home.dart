@@ -16,6 +16,8 @@ class _HomeState extends State<Home> {
 
   Color color;
 
+  String errorLogText;
+
   String missingDataInfo = "Alle data er registrert som forventet!";
 
   @override
@@ -25,9 +27,11 @@ class _HomeState extends State<Home> {
     var homeInfo = HomeInfo.fromJson(numberMap);
 
     if (homeInfo.numberOfErrors > 0) {
-      color = Colors.green;
-    } else {
       color = Colors.red;
+      errorLogText = homeInfo.numberOfErrors.toString();
+    } else {
+      color = Colors.green;
+      errorLogText = "Ingen registrerte feil.";
     }
 
     return new Scaffold(
@@ -150,7 +154,7 @@ class _HomeState extends State<Home> {
                               ),
                               SizedBox(height: 6),
                               Text(
-                                homeInfo.numberOfErrors.toString(),
+                                errorLogText,
                                 style: TextStyle(
                                   fontSize: 30,
                                   color: color,
