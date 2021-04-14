@@ -9,6 +9,7 @@ class ApiClient {
 
 
   String baseURL = "http://10.0.2.2:5000/api/JWTAuthentication?orgNum=1234&pass=admin";
+  String newBaseURL = "http://10.0.2.2:5000/app/";
 
   Future<http.Response> getClient(String customUrl, Map bodyInfo, String token) async {
 

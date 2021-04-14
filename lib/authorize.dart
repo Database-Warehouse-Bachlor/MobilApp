@@ -9,7 +9,7 @@ import 'package:toast/toast.dart';
 
 class Authorize {
 
-  static const URL = "http://10.0.2.2:5000/api/login";
+  static const URL = "http://10.0.2.2:5000/auth/login";
 
   Map loginInfo;
   bool errorCheck = true;

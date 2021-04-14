@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0)
                     ),
-                    child: Text('Log inn ',
+                    child: Text('Logg inn ',
                         style: TextStyle(fontSize: 24.0,
                           color: Colors.grey[900],
                         )

@@ -3,12 +3,12 @@ import 'package:mobilapp/View/logVeiw.dart';
 import 'package:mobilapp/loadingscreen.dart';
 import 'package:mobilapp/login.dart';
 import 'package:mobilapp/home.dart';
-import 'file:///G:/Skole/Bachlor_oppgave/mobilapp/lib/View/tennantListView.dart';
+import 'package:mobilapp/View/tennantListView.dart';
 
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: "/home",
+    initialRoute: "/loading",
     routes: {
       "/login": (context) => Login(),
       "/loading": (context) => Loading(),
