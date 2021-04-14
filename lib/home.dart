@@ -3,7 +3,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
-import 'package:mobilapp/numberOfTennantAndErrors.dart';
+import 'package:mobilapp/homeInfo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -12,19 +12,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   List data;
 
-  Color color = Colors.green;
+  Color color;
 
   String missingDataInfo = "Alle data er registrert som forventet!";
 
   @override
   Widget build(BuildContext context) {
-
     String tennantsAndErrors = ModalRoute.of(context).settings.arguments;
     Map<String, dynamic> numberMap = jsonDecode(tennantsAndErrors);
-    var numberOgTennantsAndErrors = NumberOfTennantAndErrors.fromJson(numberMap);
+    var homeInfo = HomeInfo.fromJson(numberMap);
+
+    if (homeInfo.numberOfErrors > 0) {
+      color = Colors.green;
+    } else {
+      color = Colors.red;
+    }
 
     return new Scaffold(
       appBar: new AppBar(
@@ -34,8 +38,7 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-          ),
+          decoration: BoxDecoration(),
           child: new Center(
             child: new Column(
               children: [
@@ -45,44 +48,40 @@ class _HomeState extends State<Home> {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.grey[200],
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(5)
-                        ),
+                            color: Colors.grey[200],
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(5)),
                         height: 100,
                         padding: EdgeInsets.fromLTRB(5, 5, 3, 5),
                         child: FlatButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-
                           color: Colors.grey[200],
                           onPressed: () {
-                            Navigator.pushNamed(context, "/home/tennantListView");
+                            Navigator.pushNamed(
+                                context, "/home/tennantListView");
                           },
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                            children:[
-                              Text(
-                                "Antall brukere:",
-                                style: TextStyle(
-                                  fontSize: 22,
+                              children: [
+                                Text(
+                                  "Antall brukere:",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                numberOgTennantsAndErrors.numberOfTennants.toString(),
-                                style: TextStyle(
-                                  fontSize: 30,
+                                Text(
+                                  homeInfo.numberOfTennants.toString(),
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
-                                textAlign: TextAlign.center,
-                              ),
-
-                            ]
-
-                          ),
+                              ]),
                         ),
                       ),
                     ),
@@ -95,8 +94,7 @@ class _HomeState extends State<Home> {
                               color: Colors.black,
                               width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(5)
-                        ),
+                            borderRadius: BorderRadius.circular(5)),
                         height: 100,
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: FlatButton(
@@ -131,8 +129,7 @@ class _HomeState extends State<Home> {
                               color: Colors.black,
                               width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(5)
-                        ),
+                            borderRadius: BorderRadius.circular(5)),
                         height: 110,
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                         child: FlatButton(
@@ -140,8 +137,7 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           color: Colors.grey[200],
-                          onPressed: () {
-                          },
+                          onPressed: () {},
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -154,7 +150,7 @@ class _HomeState extends State<Home> {
                               ),
                               SizedBox(height: 6),
                               Text(
-                                numberOgTennantsAndErrors.numberOfErrors.toString(),
+                                homeInfo.numberOfErrors.toString(),
                                 style: TextStyle(
                                   fontSize: 30,
                                   color: color,
@@ -169,7 +165,6 @@ class _HomeState extends State<Home> {
                     SizedBox(height: 130, width: 10),
                   ],
                 ),
-
                 Row(
                   children: [
                     SizedBox(height: 100, width: 10),
@@ -182,12 +177,12 @@ class _HomeState extends State<Home> {
                               color: Colors.black,
                               width: 2,
                             ),
-                            borderRadius: BorderRadius.circular(5)
-                        ),
+                            borderRadius: BorderRadius.circular(5)),
                         child: FlatButton(
                           onPressed: () async {
                             //Clears the token
-                            SharedPreferences preferences = await SharedPreferences.getInstance();
+                            SharedPreferences preferences =
+                                await SharedPreferences.getInstance();
                             preferences.setString("token", "");
 
                             //Goes back to the login screen
