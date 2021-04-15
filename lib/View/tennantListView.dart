@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:mobilapp/tennant.dart';
 
 class Tennant_View extends StatefulWidget {
   @override
@@ -10,37 +11,11 @@ class Tennant_View extends StatefulWidget {
 }
 
 class _Tennant_ViewState extends State<Tennant_View> {
-
-  List data = [
-    {
-      "city": "Hamresanden",
-      "address": "Juraveien 4",
-      "zipcode": "4656",
-      "tennant_id": "1",
-      "business_id": "123456789",
-      "tennant_name": "ElProffen"
-    },
-    {
-      "city": "Laksevåg",
-      "address": "Håsteins gate 10",
-      "zipcode": "5160",
-      "tennant_id": "2",
-      "business_id": "123789456",
-      "tennant_name": "Kamo Ent. AS"
-    },
-    {
-      "city": "Ulsteinvik",
-      "address": "Smårisevadet 19",
-      "zipcode": "6065",
-      "tennant_id": "4",
-      "business_id": "321654897",
-      "tennant_name": "Kuldepartner AS"
-    }
-  ];
+  List<Tennant> data;
 
   @override
   Widget build(BuildContext context) {
-
+    data = ModalRoute.of(context).settings.arguments;
     print(data);
 
     return new Scaffold(
@@ -49,8 +24,7 @@ class _Tennant_ViewState extends State<Tennant_View> {
         title: Text("Liste over tennants"),
       ),
       body: Container(
-        decoration: BoxDecoration(
-            color: Colors.grey[400]),
+        decoration: BoxDecoration(color: Colors.grey[400]),
         child: new ListView.builder(
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
@@ -69,39 +43,62 @@ class _Tennant_ViewState extends State<Tennant_View> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               new Text(
-                                "Navnet på bedriften",
+                                data[index].tennantName,
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 6),
-                              new Text(
-                                "Orgnummeret",
-                                style: TextStyle(
-                                    fontSize: 20
-                                ),
+                              Row(
+                                children: [
+                                  new Text(
+                                    "Id: ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    data[index].id.toString(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(height: 6),
-                              new Text(
-                                "City",
-                                style: TextStyle(
-                                    fontSize: 20
-                                ),
+                              Row(
+                                children: [
+                                  new Text(
+                                    "Orgnummer: ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    data[index].businessId,
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
                               ),
                               SizedBox(height: 6),
-                              new Text(
-                                "Address",
-                                style: TextStyle(
-                                    fontSize: 20
-                                ),
-                              ),
-                              SizedBox(height: 6),
-                              new Text(
-                                "Zipcode",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  new Text(
+                                    "API-nøkkel: ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    data[index].apiKey,
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
