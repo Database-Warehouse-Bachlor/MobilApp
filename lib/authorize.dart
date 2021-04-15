@@ -9,10 +9,11 @@ import 'package:toast/toast.dart';
 
 class Authorize {
 
-  static const URL = "http://10.0.2.2:5000/auth/login";
+  static const authURL = "auth/login";
 
   Map loginInfo;
   bool errorCheck = true;
+  ApiClient apiClient = new ApiClient();
 
   Future<bool> authorize(String username, String password, BuildContext context) async{
 
@@ -21,7 +22,7 @@ class Authorize {
       "pwd": "$password"
     };
     //Sends request to backend for password
-    Response response = await ApiClient().getClient(URL, loginInfo, "");
+    Response response = await ApiClient().getClient(apiClient.baseURL + authURL, loginInfo, "");
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
 

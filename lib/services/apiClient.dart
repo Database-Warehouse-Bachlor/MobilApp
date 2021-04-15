@@ -8,8 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiClient {
 
 
-  String baseURL = "http://10.0.2.2:5000/api/JWTAuthentication?orgNum=1234&pass=admin";
-  String newBaseURL = "http://10.0.2.2:5000/app/";
+  String baseURL = "http://10.0.2.2:5000/";
 
   Future<http.Response> getClient(String customUrl, Map bodyInfo, String token) async {
 

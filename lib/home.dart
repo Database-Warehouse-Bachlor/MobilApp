@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                           color: Colors.grey[200],
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, "/home/tennantListView");
+                                context, "/loading");
                           },
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -141,7 +141,9 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           color: Colors.grey[200],
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, "/home/logListView");
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
