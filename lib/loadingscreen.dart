@@ -14,35 +14,49 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  final String tennantInfo = "https://api.mocki.io/v1/897d1d9b";
+  //final String tennantInfo = "https://api.mocki.io/v1/897d1d9b";
   final String logInfo = "https://api.mocki.io/v1/73055422";
   final String homeInfo = "homeinfo";
+  final String tennantInfo = "tennants";
 
   ApiClient apiClient = new ApiClient();
   List data;
 
-  String tennantsAndErrors;
+  String recievedHomeInfo;
+
 
   @override
   void initState() {
     super.initState();
-  //  this.getJsonData();
-    this.getTennantsAndErrors();
+   // this.getJsonData();
+    this.getNumberOfTennantsAndErrors();
+    //this.getTennantData();
   }
 
-  Future<void> getTennantsAndErrors() async {
+  Future<void> getNumberOfTennantsAndErrors() async {
 
     Response response = await ApiClient().getClient(apiClient.newBaseURL + homeInfo, {}, "");
 
-    tennantsAndErrors = jsonDecode(response.body);
-    print('Get Tennants and errors ' + tennantsAndErrors);
+    recievedHomeInfo = jsonDecode(response.body);
+    print("Dafuq is dis " + recievedHomeInfo);
 
-    Navigator.pushReplacementNamed(context, "/home", arguments: tennantsAndErrors);
+    Navigator.pushReplacementNamed(context, "/home", arguments: recievedHomeInfo);
   }
+
+  Future<void> getTennantData() async {
+    Response response = await ApiClient().getClient(apiClient.newBaseURL + tennantInfo, {}, "");
+
+    Iterable responseDecode = jsonDecode(response.body);
+    List<Tennant> tennants = List<Tennant>.from(responseDecode.map((model)=> Tennant.fromJson(model)));
+
+    Navigator.pushReplacementNamed(context, "/home/tennantListView", arguments: tennants);
+  }
+
+
 
   Future<void> getJsonData() async {
 
-    Response response = await ApiClient().getClient(tennantInfo, {}, "");
+    Response response = await ApiClient().getClient(apiClient.newBaseURL + tennantInfo, {}, "");
 
     Iterable reponseDecoded = jsonDecode(response.body);
     List<Tennant> tennants = List<Tennant>.from(reponseDecoded.map((model)=> Tennant.fromJson(model)));
