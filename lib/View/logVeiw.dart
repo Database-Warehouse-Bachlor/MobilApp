@@ -1,9 +1,13 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
+
+import '../errorLog.dart';
 
 class LogView extends StatefulWidget {
   @override
@@ -15,22 +19,22 @@ class _LogViewState extends State<LogView> {
 
   List data = [
     {
-      "log": "Det skjedde noe feil her og her",
+      "errorMessage": "Newtonsoft.Json.JsonSerializationException : Error converting value to type 'System.Int64'. Path 'InvoiceInbound[1].supplierId', line 20, position 29. businessId: 123123123",
       "date": "2008-03-09T16:05:07",
-      "tennant_id": "1",
-      "tennantName": "bademiljøet"
+      "errorType": "GAY"
     },
     {
-      "log": "Enda en feil skjedde",
+      "errorMessage": "Enda en feil skjedde",
       "date": "2008-03-09T16:05:07",
-      "tennant_id": "2",
-      "tennantName": "Elproffen"
+      "errorType": "IHJAJAJJJAHDFAEOFHA"
     }
   ];
 
 
   @override
   Widget build(BuildContext context) {
+
+    List<ErrorLog> errorLog = List<ErrorLog>.from(data.map((model)=> ErrorLog.fromJson(model)));
 
 
     return new Scaffold(
@@ -42,14 +46,14 @@ class _LogViewState extends State<LogView> {
         decoration: BoxDecoration(
             color: Colors.grey[400]),
         child: new ListView.builder(
-          itemCount: data == null ? 0 : data.length,
+          itemCount: errorLog == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
             return new Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: new Center(
                 child: new Column(
                   children: [
-                    SizedBox(height: 5),
+                    SizedBox(height: 6),
                     new Card(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
@@ -59,31 +63,24 @@ class _LogViewState extends State<LogView> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               new Text(
-                                "Navnet på bedriften",
+                                "${DateFormat('dd-MM-yyyy - KK:mm').format(errorLog[index].date)}",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 3),
                               new Text(
-                                "Orgnummeret",
+                                "${errorLog[index].errorType}",
                                 style: TextStyle(
-                                    fontSize: 20
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 6),
                               new Text(
-                                "Feilmelding",
+                                "${errorLog[index].errorMessage}",
                                 style: TextStyle(
-                                    fontSize: 20
-                                ),
-                              ),
-                              SizedBox(height: 6),
-                              new Text(
-                                "Tidspunkt",
-                                style: TextStyle(
-                                    fontSize: 20
+                                    fontSize: 16
                                 ),
                               ),
                             ],

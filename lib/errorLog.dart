@@ -4,21 +4,18 @@ ErrorLog errorLogFromJson(String str) => ErrorLog.fromJson(json.decode(str));
 
 class ErrorLog {
   ErrorLog({
-    this.tennantId,
-    this.tennantName,
-    this.log,
+    this.errorMessage,
     this.date,
+    this.errorType,
   });
 
-  String tennantId;
-  String tennantName;
-  String log;
+  String errorMessage;
   DateTime date;
+  String errorType;
 
   factory ErrorLog.fromJson(Map<String, dynamic> json) => ErrorLog(
-    tennantId: json["tennant_id"],
-    tennantName: json["tennantName"],
-    log: json["log"],
+    errorMessage: json["errorMessage"],
     date: DateTime.parse(json["date"]),
+    errorType: json["errorType"],
   );
 }

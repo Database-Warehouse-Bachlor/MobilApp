@@ -53,7 +53,6 @@ class _LoadingState extends State<Loading> {
     List<ErrorLog> errorLog = List<ErrorLog>.from(reponseDecoded.map((model)=> ErrorLog.fromJson(model)));
 
     print(tennants[0].tennantName);
-    print(errorLog[0].log);
 
     Navigator.pushReplacementNamed(context, "/home", arguments: data);
 
