@@ -8,7 +8,7 @@ import 'package:mobilapp/View/tennantListView.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: "/loading",
+    initialRoute: "/login",
     routes: {
       "/login": (context) => Login(),
       "/loading": (context) => Loading(),
