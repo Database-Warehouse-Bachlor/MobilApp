@@ -57,13 +57,13 @@ class _LogViewState extends State<LogView> {
                                 ),
                               ),
                               SizedBox(height: 3),
-                              new Text(
-                                "${errorData[index].errorType}",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                               new Text(
+                                 "${errorData[index].errorType}",
+                                 style: TextStyle(
+                                   fontSize: 16,
+                                   fontWeight: FontWeight.bold,
+                                 ),
+                               ),
                               new Text(
                                 "${errorData[index].errorMessage}",
                                 style: TextStyle(
