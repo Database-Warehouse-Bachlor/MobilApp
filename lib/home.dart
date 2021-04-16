@@ -18,6 +18,8 @@ class _HomeState extends State<Home> {
 
   String errorLogText;
 
+  String endPointChanger = "";
+
   String missingDataInfo = "Alle data er registrert som forventet!";
 
   @override
@@ -66,8 +68,8 @@ class _HomeState extends State<Home> {
                           ),
                           color: Colors.grey[200],
                           onPressed: () {
-                            Navigator.pushNamed(
-                                context, "/home/tennantListView");
+                            endPointChanger = "tennants";
+                            Navigator.pushNamed(context, "/loading", arguments: endPointChanger);
                           },
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +109,8 @@ class _HomeState extends State<Home> {
                           ),
                           color: Colors.grey[200],
                           onPressed: () {
-                            Navigator.pushNamed(context, "/home/logListView");
+                            endPointChanger = "logList";
+                            Navigator.pushNamed(context, "/loading", arguments: endPointChanger);
                           },
                           child: Text(
                             "Log",
@@ -141,7 +144,10 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           color: Colors.grey[200],
-                          onPressed: () {},
+                          onPressed: () {
+                            endPointChanger = "logErrorLastTwentyFour";
+                            Navigator.pushNamed(context, "/loading", arguments: endPointChanger);
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

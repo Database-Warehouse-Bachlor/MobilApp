@@ -15,7 +15,7 @@ class ErrorLog {
 
   factory ErrorLog.fromJson(Map<String, dynamic> json) => ErrorLog(
     errorMessage: json["errorMessage"],
-    date: DateTime.parse(json["date"]),
+    date: DateTime.parse(json["timeOfError"]),
     errorType: json["errorType"],
   );
 }

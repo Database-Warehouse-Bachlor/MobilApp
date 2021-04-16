@@ -17,25 +17,12 @@ class LogView extends StatefulWidget {
 class _LogViewState extends State<LogView> {
 
 
-  List data = [
-    {
-      "errorMessage": "Newtonsoft.Json.JsonSerializationException : Error converting value to type 'System.Int64'. Path 'InvoiceInbound[1].supplierId', line 20, position 29. businessId: 123123123",
-      "date": "2008-03-09T16:05:07",
-      "errorType": "GAY"
-    },
-    {
-      "errorMessage": "Enda en feil skjedde",
-      "date": "2008-03-09T16:05:07",
-      "errorType": "IHJAJAJJJAHDFAEOFHA"
-    }
-  ];
+  List<ErrorLog> errorData;
 
 
   @override
   Widget build(BuildContext context) {
-
-    List<ErrorLog> errorLog = List<ErrorLog>.from(data.map((model)=> ErrorLog.fromJson(model)));
-
+    errorData = ModalRoute.of(context).settings.arguments;
 
     return new Scaffold(
       appBar: new AppBar(
@@ -46,7 +33,7 @@ class _LogViewState extends State<LogView> {
         decoration: BoxDecoration(
             color: Colors.grey[400]),
         child: new ListView.builder(
-          itemCount: errorLog == null ? 0 : data.length,
+          itemCount: errorData == null ? 0 : errorData.length,
           itemBuilder: (BuildContext context, int index) {
             return new Container(
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -63,22 +50,22 @@ class _LogViewState extends State<LogView> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               new Text(
-                                "${DateFormat('dd-MM-yyyy - KK:mm').format(errorLog[index].date)}",
+                                "${DateFormat('dd-MM-yyyy - KK:mm').format(errorData[index].date)}",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(height: 3),
+                               new Text(
+                                 "${errorData[index].errorType}",
+                                 style: TextStyle(
+                                   fontSize: 16,
+                                   fontWeight: FontWeight.bold,
+                                 ),
+                               ),
                               new Text(
-                                "${errorLog[index].errorType}",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              new Text(
-                                "${errorLog[index].errorMessage}",
+                                "${errorData[index].errorMessage}",
                                 style: TextStyle(
                                     fontSize: 16
                                 ),
