@@ -122,12 +122,12 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 0, width: 10),
+                    SizedBox(width: 10),
                   ],
                 ),
                 Row(
                   children: [
-                    SizedBox(height: 80, width: 10),
+                    SizedBox(height: 85, width: 10),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
@@ -172,13 +172,13 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 0, width: 10),
+                    SizedBox(width: 10),
                   ],
                 ),
                 //SizedBox(height: 0),
                 Row(
                   children: [
-                    SizedBox(height: 90, width: 10),
+                    SizedBox(height: 85, width: 10),
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
