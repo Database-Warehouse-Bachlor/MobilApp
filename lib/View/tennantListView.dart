@@ -29,11 +29,11 @@ class _Tennant_ViewState extends State<Tennant_View> {
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
             return new Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: new Center(
                 child: new Column(
                   children: [
-                    SizedBox(height: 5),
+                    SizedBox(height: 6),
                     new Card(
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
@@ -49,7 +49,7 @@ class _Tennant_ViewState extends State<Tennant_View> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 3),
                               Row(
                                 children: [
                                   new Text(
@@ -66,7 +66,7 @@ class _Tennant_ViewState extends State<Tennant_View> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 3),
                               Row(
                                 children: [
                                   new Text(
@@ -81,7 +81,7 @@ class _Tennant_ViewState extends State<Tennant_View> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 3),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
