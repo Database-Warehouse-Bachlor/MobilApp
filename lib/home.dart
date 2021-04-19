@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(),
+          decoration: BoxDecoration(color: Colors.brown[100]),
           child: new Center(
             child: new Column(
               children: [
@@ -122,12 +122,12 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 100, width: 10),
+                    SizedBox(height: 0, width: 10),
                   ],
                 ),
                 Row(
                   children: [
-                    SizedBox(height: 130, width: 10),
+                    SizedBox(height: 80, width: 10),
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
@@ -172,12 +172,13 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 130, width: 10),
+                    SizedBox(height: 0, width: 10),
                   ],
                 ),
+                //SizedBox(height: 0),
                 Row(
                   children: [
-                    SizedBox(height: 100, width: 10),
+                    SizedBox(height: 90, width: 10),
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
@@ -208,7 +209,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(height: 6, width: 10),
                   ],
                 ),
               ],

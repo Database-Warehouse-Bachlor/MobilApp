@@ -31,7 +31,7 @@ class _LogViewState extends State<LogView> {
       ),
       body: Container(
         decoration: BoxDecoration(
-            color: Colors.grey[400]),
+            color: Colors.brown[100]),
         child: new ListView.builder(
           itemCount: errorData == null ? 0 : errorData.length,
           itemBuilder: (BuildContext context, int index) {

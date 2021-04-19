@@ -24,7 +24,7 @@ class _Tennant_ViewState extends State<Tennant_View> {
         title: Text("Liste over tennants"),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.grey[400]),
+        decoration: BoxDecoration(color: Colors.brown[100]),
         child: new ListView.builder(
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
