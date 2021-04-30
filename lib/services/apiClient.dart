@@ -45,7 +45,7 @@ class ApiClient {
         preferences.setString("error", "Unauthorized");
       }
 
-
+      preferences.setString("error", "Error");
       //If there is other internal issues
       return null;
 
