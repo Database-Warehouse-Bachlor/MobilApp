@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobilapp/home.dart';
 
 import 'package:mobilapp/login.dart';
-
-//void login() => run(_testLogin);
 
 void main() {
   testWidgets('Test login widgets', (WidgetTester tester) async{
