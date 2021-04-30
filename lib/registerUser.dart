@@ -5,7 +5,7 @@ import 'package:mobilapp/userPrefs.dart';
 import 'package:mobilapp/services/apiClient.dart';
 import "package:mobilapp/requestErrorHandler.dart";
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 class RegisterUser {
 

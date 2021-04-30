@@ -11,20 +11,24 @@ class RequestErrorHandler {
       if (errorMessage != "Unauthorized") {
         //checks if there is a connection error
         if (errorMessage != "connection") {
+          FocusManager.instance.primaryFocus.unfocus();
           return true;
 
           //runs if there is a connection error
         } else if (errorMessage == "connection") {
+          FocusManager.instance.primaryFocus.unfocus();
           Toast.show("Feil med internett forbindelse", context,
               duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
         }
         //runs if the user cannot be verified. Could be wrong login information, or the user does not have access to api call
       } else if(errorMessage == "Unauthorized") {
+        FocusManager.instance.primaryFocus.unfocus();
         Toast.show("Kunne ikke verifisere bruker", context,
             duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
       }
       //runs if there is an error
     } else {
+      FocusManager.instance.primaryFocus.unfocus();
       Toast.show("En feil skjedde", context, duration: Toast.LENGTH_LONG,
           gravity: Toast.BOTTOM);
     }

@@ -178,6 +178,35 @@ class _HomeState extends State<Home> {
                 //SizedBox(height: 0),
                 Row(
                   children: [
+                    Expanded(child: Container(
+                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                          borderRadius: BorderRadius.circular(5)),
+                          child: FlatButton(
+                            onPressed: () async {
+                              //Clears the token
+                              SharedPreferences preferences =
+                              await SharedPreferences.getInstance();
+                              preferences.setString("token", "");
+
+                              //Goes back to the login screen
+                              Navigator.pushNamed(context, "/register");
+                            },
+                            child: Text(
+                              "Ny bruker",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                          ),
+                      ),
+                    ),
+                    ),
                     SizedBox(height: 85, width: 10),
                     Expanded(
                       child: Container(
