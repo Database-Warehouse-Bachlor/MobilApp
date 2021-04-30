@@ -51,6 +51,7 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 40.0),
               TextField(
+                key: Key("emailField"),
                 controller: emailField,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -63,6 +64,7 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: 50.0),
               TextField(
+                key: Key("passwordField"),
                 controller: passwordField,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -78,7 +80,10 @@ class _LoginState extends State<Login> {
               Container(
                 margin: EdgeInsets.all(25.0),
                 child: SizedBox(width: 200.0,
-                  child: RaisedButton(onPressed: () async {
+                  child: RaisedButton(
+                    key: Key("loginBtn"),
+                    onPressed: () async {
+
 
                     String email = emailField.text.toString();
                     String password = passwordField.text.toString();
