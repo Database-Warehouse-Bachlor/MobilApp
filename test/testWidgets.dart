@@ -26,24 +26,4 @@ void main() {
     expect(find.text("somePassword"), findsOneWidget);
 
   });
-  testWidgets('Test home widget buttons', (WidgetTester tester) async{
-    // Widgets needed
-
-    var tennantBtnText = find.byKey(ValueKey("tennantsBtn"));
-   // var tennantBtn = find.byKey(ValueKey("tennantsBtn"));
-   // var logListBtn = find.byKey(ValueKey("logListBtn"));
-   // var logtwentyFourBtn = find.byKey(ValueKey("lastTwentyFourBtn"));
-   // var logoutBtn = find.byKey(ValueKey("logoutBtn"));
-
-    // Execute the test
-    await tester.pumpWidget(MaterialApp(home: Home()));
-    await tester.enterText(tennantBtnText, "Antall brukere");
-  //  await tester.tap(logListBtn);
-   // await tester.tap(logtwentyFourBtn);
-   // await tester.tap(logoutBtn);
-    await tester.pump(); // rebuilds widget
-
-    // Check output
-    expect(find.text("Antall brukere"), findsOneWidget);
-  });
 }
