@@ -68,3 +68,7 @@ ios/Flutter/Release.xcconfig
 *.xcworkspacedata
 
 *.xcsettings
+
+pubspec.lock
+
+local.properties
