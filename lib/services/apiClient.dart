@@ -3,10 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class ApiClient {
 
   String baseURL = "http://10.0.2.2:5000/";
-
+// Sends a request to the baseurl with the added endpoints that is customurl in the getClient method
   Future<http.Response> getClient(String customUrl, Map bodyInfo, String token) async {
 
     SharedPreferences preferences = await SharedPreferences.getInstance();

@@ -15,6 +15,11 @@ class RegisterUser {
   bool errorCheck = false;
   ApiClient apiClient = new ApiClient();
 
+  /*
+ *  Used to register an inituser for a tennant.
+ *  username, password and tennantId is required as input for the user
+ *  to be able to register a new user
+ */
   Future<bool> register(String username, String password, int tennantId, BuildContext context) async{
 
     registerInfo = {

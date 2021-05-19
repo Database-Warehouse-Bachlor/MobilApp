@@ -13,7 +13,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  //final String tennantInfo = "https://api.mocki.io/v1/897d1d9b";
+  // Endpoint values
   final String logInfo = "app/errors";
   final String latestLogInfo = "app/lasterrors";
   final String homeInfo = "app/homeinfo";
@@ -28,9 +28,15 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    // this.getNumberOfTennantsAndErrors();
   }
 
+  /*
+   *  Methods underneath send a POST requset to a backend.
+   *  Data arrives as JSON and is decoded in each method for it to be used further in the app
+   *  Changes screen with pushreplacementNamed when all data is retrieved
+   */
+
+  // Retrieves number of tennants and errors
   Future<void> getNumberOfTennantsAndErrors() async {
     Response response =
         await ApiClient().getClient(apiClient.baseURL + homeInfo, {}, "");
@@ -41,6 +47,7 @@ class _LoadingState extends State<Loading> {
         arguments: recievedHomeInfo);
   }
 
+  // Retrieves information about tennants
   Future<void> getTennantData() async {
     Response response =
         await ApiClient().getClient(apiClient.baseURL + tennantInfo, {}, "");
@@ -53,6 +60,7 @@ class _LoadingState extends State<Loading> {
         arguments: tennants);
   }
 
+  // Retrieves errors last 24 hours as a list
   Future<void> getLatestErrors() async {
     Response response =
         await ApiClient().getClient(apiClient.baseURL + latestLogInfo, {}, "");
@@ -65,7 +73,7 @@ class _LoadingState extends State<Loading> {
     Navigator.pushReplacementNamed(context, "/home/logListView",
         arguments: errorLog);
   }
-
+// Retrieves all errors as a list
   Future<void> getErrors() async {
     Response response =
         await ApiClient().getClient(apiClient.baseURL + logInfo, {}, "");
@@ -78,10 +86,13 @@ class _LoadingState extends State<Loading> {
         arguments: errorLog);
   }
 
+  /*
+   *  A switch case used to determin which method should get call
+   *  the variable endpointchanger changes in the home.dart file depending on which button is pressed
+   */
   void changeView() {
     switch (endPointChanger) {
       case "tennants":
-        print("IM HERE NOW =============================");
         this.getTennantData();
         break;
       case "logList":
@@ -96,24 +107,6 @@ class _LoadingState extends State<Loading> {
     }
   }
 
-  // Future<void> getJsonData() async {
-  //   Response response =
-  //       await ApiClient().getClient(apiClient.baseURL + tennantInfo, {}, "");
-  //
-  //   Iterable reponseDecoded = jsonDecode(response.body);
-  //   List<Tennant> tennants = List<Tennant>.from(
-  //       reponseDecoded.map((model) => Tennant.fromJson(model)));
-  //
-  //   response = await ApiClient().getClient(logInfo, {}, "");
-  //
-  //   reponseDecoded = jsonDecode(response.body);
-  //   List<ErrorLog> errorLog = List<ErrorLog>.from(
-  //       reponseDecoded.map((model) => ErrorLog.fromJson(model)));
-  //
-  //   print(tennants[0].tennantName);
-  //
-  //   Navigator.pushReplacementNamed(context, "/home", arguments: data);
-  // }
 
   @override
   Widget build(BuildContext context) {

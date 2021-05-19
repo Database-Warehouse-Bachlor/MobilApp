@@ -7,6 +7,7 @@ import 'package:mobilapp/View/tennantListView.dart';
 import 'package:mobilapp/register.dart';
 
 
+// Different routes used for the application
 void main() {
   runApp(MaterialApp(
     initialRoute: "/login",

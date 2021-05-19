@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../errorLog.dart';
 
+
 class LogView extends StatefulWidget {
   @override
   _LogViewState createState() => _LogViewState();

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 Tennant tennantFromJson(String str) => Tennant.fromJson(json.decode(str));
 
+// Model class to get tennant objects
 class Tennant {
   Tennant({
     this.id,

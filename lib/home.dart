@@ -21,10 +21,12 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    // Gets arguments from another widget
     String tennantsAndErrors = ModalRoute.of(context).settings.arguments;
     Map<String, dynamic> numberMap = jsonDecode(tennantsAndErrors);
     var homeInfo = HomeInfo.fromJson(numberMap);
 
+    // Changed color depending on if app retrieves an error or not
     if (homeInfo.numberOfErrors > 0) {
       color = Colors.red;
       errorLogText = homeInfo.numberOfErrors.toString();
