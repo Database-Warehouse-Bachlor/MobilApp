@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'dart:convert';
-import 'dart:async';
-import 'package:intl/intl.dart';
 import 'package:mobilapp/homeInfo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -38,7 +35,7 @@ class _HomeState extends State<Home> {
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Text("Home"),
+        title: Text(""),
         backgroundColor: Colors.orange[800],
         centerTitle: true,
       ),
@@ -172,12 +169,12 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(height: 85 ,width: 10),
                   ],
                 ),
-                //SizedBox(height: 0),
                 Row(
                   children: [
+                    SizedBox(height: 85, width: 10),
                     Expanded(child: Container(
                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       decoration: BoxDecoration(
@@ -188,13 +185,8 @@ class _HomeState extends State<Home> {
                         ),
                           borderRadius: BorderRadius.circular(5)),
                           child: FlatButton(
-                            onPressed: () async {
-                              //Clears the token
-                              SharedPreferences preferences =
-                              await SharedPreferences.getInstance();
-                              preferences.setString("token", "");
-
-                              //Goes back to the login screen
+                            onPressed: ()  {
+                              //Goes to the register screen
                               Navigator.pushNamed(context, "/register");
                             },
                             child: Text(

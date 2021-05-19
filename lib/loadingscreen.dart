@@ -36,14 +36,12 @@ class _LoadingState extends State<Loading> {
         await ApiClient().getClient(apiClient.baseURL + homeInfo, {}, "");
 
     recievedHomeInfo = jsonDecode(response.body);
-    print("Dafuq is dis " + recievedHomeInfo);
 
     Navigator.pushReplacementNamed(context, "/home",
         arguments: recievedHomeInfo);
   }
 
   Future<void> getTennantData() async {
-    print("LOADED TENNANTDATA");
     Response response =
         await ApiClient().getClient(apiClient.baseURL + tennantInfo, {}, "");
 

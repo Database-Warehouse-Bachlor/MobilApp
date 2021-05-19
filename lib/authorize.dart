@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:mobilapp/login.dart';
-import 'package:mobilapp/userPrefs.dart';
 import 'package:mobilapp/services/apiClient.dart';
 import "package:mobilapp/requestErrorHandler.dart";
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:toast/toast.dart';
 
 class Authorize {
 
@@ -23,7 +20,6 @@ class Authorize {
     };
     //Sends request to backend for password
     Response response = await ApiClient().getClient(apiClient.baseURL + authURL, loginInfo, "");
-
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
     //If there is an error with the http request
@@ -39,7 +35,6 @@ class Authorize {
       preferences.setString("token", response.toString());
       return true;
     }
-
     return false;
   }
 
