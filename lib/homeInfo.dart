@@ -1,8 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:mobilapp/home.dart';
-
 HomeInfo numberOfTennantAndErrors( String str) => HomeInfo.fromJson(json.decode(str));
 
 class HomeInfo {
@@ -11,6 +9,7 @@ class HomeInfo {
   int numberOfTennants;
   int numberOfErrors;
 
+  // Converts a JSON object to a Map list
   factory HomeInfo.fromJson(Map<String, dynamic> json) => HomeInfo(
     numberOfTennants: json["numberOfTennants"],
     numberOfErrors: json["numberOfErrors"]

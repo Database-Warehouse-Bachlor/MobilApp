@@ -7,7 +7,10 @@ import 'package:mobilapp/View/tennantListView.dart';
 import 'package:mobilapp/register.dart';
 
 
-// Different routes used for the application
+/*
+ *  Different routes used for the application to change widget
+ *  InitialRoute determines which widget to show when app opens
+ */
 void main() {
   runApp(MaterialApp(
     initialRoute: "/login",

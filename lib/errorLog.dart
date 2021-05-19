@@ -13,6 +13,7 @@ class ErrorLog {
   DateTime date;
   String errorType;
 
+  // Converts a JSON object to a Map list
   factory ErrorLog.fromJson(Map<String, dynamic> json) => ErrorLog(
     errorMessage: json["errorMessage"],
     date: DateTime.parse(json["timeOfError"]),

@@ -17,7 +17,9 @@ class _LogViewState extends State<LogView> {
 
   List<ErrorLog> errorData;
 
-
+/*
+ *  This widget generates a viewlist that lists all errormessages
+ */
   @override
   Widget build(BuildContext context) {
     errorData = ModalRoute.of(context).settings.arguments;
@@ -47,6 +49,7 @@ class _LogViewState extends State<LogView> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+
                               new Text(
                                 "${DateFormat('dd-MM-yyyy - KK:mm').format(errorData[index].date)}",
                                 style: TextStyle(
@@ -55,6 +58,7 @@ class _LogViewState extends State<LogView> {
                                 ),
                               ),
                               SizedBox(height: 3),
+
                                new Text(
                                  "${errorData[index].errorType}",
                                  style: TextStyle(
@@ -62,6 +66,7 @@ class _LogViewState extends State<LogView> {
                                    fontWeight: FontWeight.bold,
                                  ),
                                ),
+
                               new Text(
                                 "${errorData[index].errorMessage}",
                                 style: TextStyle(

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 Tennant tennantFromJson(String str) => Tennant.fromJson(json.decode(str));
 
-// Model class to get tennant objects
 class Tennant {
   Tennant({
     this.id,
@@ -16,7 +15,7 @@ class Tennant {
   String businessId;
   String apiKey;
 
-
+  // Converts a JSON object to a Map list
   static fromJson(Map<String, dynamic> json) => Tennant(
     id: json["id"],
     tennantName: json["tennantName"],

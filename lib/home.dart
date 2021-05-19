@@ -15,14 +15,21 @@ class _HomeState extends State<Home> {
 
   String errorLogText;
 
+  // String value used in the loadingscreen to decide which widget should load
+  // This value is changed whenever a button is called on the homescreen
   String endPointChanger = "";
 
   String missingDataInfo = "Alle data er registrert som forventet!";
 
+  /*
+   *  Widget with multiple buttons and information aboiut number of tennants and errors
+   */
   @override
   Widget build(BuildContext context) {
+
     // Gets arguments from another widget
     String tennantsAndErrors = ModalRoute.of(context).settings.arguments;
+    // Decode and converts Json to Map
     Map<String, dynamic> numberMap = jsonDecode(tennantsAndErrors);
     var homeInfo = HomeInfo.fromJson(numberMap);
 
@@ -74,7 +81,7 @@ class _HomeState extends State<Home> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Antall brukere:",
+                                  "Antall bedrifter:",
                                   style: TextStyle(
                                     fontSize: 22,
                                   ),

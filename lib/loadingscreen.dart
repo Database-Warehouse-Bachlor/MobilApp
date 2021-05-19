@@ -23,6 +23,7 @@ class _LoadingState extends State<Loading> {
   List data;
 
   String recievedHomeInfo;
+  // Value to determine which method to be loaded. Value is changed in home.dart
   String endPointChanger;
 
   @override
@@ -87,7 +88,7 @@ class _LoadingState extends State<Loading> {
   }
 
   /*
-   *  A switch case used to determin which method should get call
+   *  A switch case used to determine which method should be called
    *  the variable endpointchanger changes in the home.dart file depending on which button is pressed
    */
   void changeView() {

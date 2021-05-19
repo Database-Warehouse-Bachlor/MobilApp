@@ -9,10 +9,14 @@ class Tennant_View extends StatefulWidget {
 class _Tennant_ViewState extends State<Tennant_View> {
   List<Tennant> data;
 
+  /*
+   *  This widget generates a viewlist that lists all tennants
+   */
   @override
   Widget build(BuildContext context) {
+
+    // Retrieves arguments from another widget
     data = ModalRoute.of(context).settings.arguments;
-    print(data);
 
     return new Scaffold(
       appBar: new AppBar(

@@ -95,17 +95,15 @@ class _RegisterState extends State<Register> {
                     key: Key("registerBtn"),
                     onPressed: () async {
 
+                      // Converts user input to string
                       String tennantId = idField.text.toString();
                       String email = emailField.text.toString();
                       String password = passwordField.text.toString();
 
-                      print(tennantId);
-                      print(email);
-                      print(password);
-
-                      //If everything is ok, sends to home page
+                      // A boolean that returns true if 200 OK is the response from backend
                       bool successfulRegister = await RegisterUser().register(email, password, int.parse(tennantId), context);
 
+                      // If everything is ok, sends to home page
                       if(successfulRegister) {
                         Navigator.pushReplacementNamed(context, "/loading");
                       }

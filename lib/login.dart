@@ -21,7 +21,10 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-
+  /*
+   *  This widget has two inputfields and a button.
+   *  Username and password is required to be able to use the app
+   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,13 +82,11 @@ class _LoginState extends State<Login> {
                     key: Key("loginBtn"),
                     onPressed: () async {
 
-
+                    // Converts user input to string
                     String email = emailField.text.toString();
                     String password = passwordField.text.toString();
 
-                    print(email);
-                    print(password);
-
+                    // a boolean that returns true if a 200 OK response is returned from backend
                     bool loginSuccessful = await Authorize().authorize(email, password, context);
 
                     //If everything is ok, sends to home page
